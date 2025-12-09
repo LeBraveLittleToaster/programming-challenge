@@ -1,7 +1,5 @@
 package de.exxcellent.challenge.data;
 
-import de.exxcellent.challenge.processing.ITypeParser;
-
 import java.util.Optional;
 
 /**
