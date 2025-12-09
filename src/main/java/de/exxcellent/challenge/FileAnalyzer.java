@@ -2,6 +2,7 @@ package de.exxcellent.challenge;
 
 import de.exxcellent.challenge.data.Table;
 import de.exxcellent.challenge.processing.AggregationFunction;
+import de.exxcellent.challenge.processing.MinGoalSpreadAggregation;
 import de.exxcellent.challenge.processing.MinWeatherDiffAggregation;
 import de.exxcellent.challenge.reader.IFileReader;
 import de.exxcellent.challenge.reader.csv.CsvFileReader;
@@ -57,10 +58,10 @@ public class FileAnalyzer {
 
     }
 
-    private static AggregationFunction getAggregationFunctionFromChallengeType(ChallengeType challengeType) throws IllegalArgumentException {
+    private static AggregationFunction getAggregationFunctionFromChallengeType(ChallengeType challengeType) {
         return switch (challengeType) {
             case WEATHER -> new MinWeatherDiffAggregation();
-            default -> throw new IllegalArgumentException("No AggregationFunction found for " + challengeType);
+            case FOOTBALL -> new MinGoalSpreadAggregation();
         };
     }
 
@@ -76,6 +77,7 @@ public class FileAnalyzer {
         System.out.println("File ending is: " + fileEnding);
         return switch (fileEnding){
             case ".csv" -> new CsvFileReader();
+            // Here could be JSON etc.
           default -> throw new IllegalArgumentException("File Ending not registered");
         };
     }

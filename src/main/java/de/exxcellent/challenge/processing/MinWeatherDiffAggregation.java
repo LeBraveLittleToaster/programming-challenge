@@ -45,8 +45,8 @@ public class MinWeatherDiffAggregation extends AggregationFunction {
     private Map<Integer, Double> getTemperatureDistancesPerDay(Table<Double> dataTable, String maxColumnName, String minColumnName, String dayColumnName) throws RuntimeException {
         Map<Integer, Double> temperatureDistancesPerDay = new HashMap<>();
         int maxColumnIndex = dataTable.getHeaderIndexForName(maxColumnName).orElseThrow(() -> new RuntimeException("maxColumnName not found"));
-        int minColumnIndex = dataTable.getHeaderIndexForName(minColumnName).orElseThrow(() -> new RuntimeException("maxColumnName not found"));;
-        int dayColumnIndex = dataTable.getHeaderIndexForName(dayColumnName).orElseThrow(() -> new RuntimeException("maxColumnName not found"));;
+        int minColumnIndex = dataTable.getHeaderIndexForName(minColumnName).orElseThrow(() -> new RuntimeException("minColumnName not found"));;
+        int dayColumnIndex = dataTable.getHeaderIndexForName(dayColumnName).orElseThrow(() -> new RuntimeException("dayColumnName not found"));;
 
         dataTable.rows().values().forEach(row -> {
            Integer dayNumber =  row.getValueAt(dayColumnIndex).orElseThrow(() -> new RuntimeException("Day not present in row")).intValue();
