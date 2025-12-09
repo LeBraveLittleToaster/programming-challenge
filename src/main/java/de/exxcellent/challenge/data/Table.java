@@ -16,6 +16,7 @@ import java.util.Optional;
  */
 public record Table<T>(Map<String, Integer> header, Map<Integer, Row<T>> rows) {
     public Optional<Integer> getHeaderIndexForName(String headerName) {
+        if(headerName == null) return Optional.empty();
         return Optional.ofNullable(header.get(headerName));
     }
 }

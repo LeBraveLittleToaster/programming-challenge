@@ -36,7 +36,7 @@ public class Generators {
         return new Table<>(header, rows);
     }
 
-    static Table<String> generateWeatherTable(String headerMax, String headerMin, String headerDay, int numRows){
+    public static Table<String> generateWeatherTable(String headerMax, String headerMin, String headerDay, int numRows){
         Map<String, Integer> header = Map.of(
                 headerMax, 0,
                 headerMin, 1,
@@ -46,7 +46,7 @@ public class Generators {
         Map<Integer, Row<String>> rows = new HashMap<>();
         Random random = new Random();
 
-        for (int day = 1; day <= numRows; day++) {
+        for (int day = 0; day < numRows; day++) {
             int maxT = 60 + random.nextInt(40);
             int minT = 30 + random.nextInt(30);
             rows.put(day, new Row<>(

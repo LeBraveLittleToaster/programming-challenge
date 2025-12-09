@@ -1,7 +1,8 @@
-package de.exxcellent.challenge.processing;
+package de.exxcellent.challenge.processing.parser;
 
 import de.exxcellent.challenge.data.Row;
 import de.exxcellent.challenge.data.Table;
+import de.exxcellent.challenge.processing.ITypeParser;
 
 import java.util.Arrays;
 import java.util.HashMap;

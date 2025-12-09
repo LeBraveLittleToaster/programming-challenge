@@ -1,7 +1,8 @@
-package de.exxcellent.challenge.processing;
+package de.exxcellent.challenge.processing.aggregations;
 
-import de.exxcellent.challenge.ChallengeType;
+import de.exxcellent.challenge.constants.ChallengeType;
 import de.exxcellent.challenge.data.Table;
+import de.exxcellent.challenge.processing.AggregationFunction;
 
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;

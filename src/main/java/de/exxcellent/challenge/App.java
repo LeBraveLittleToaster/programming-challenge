@@ -1,5 +1,7 @@
 package de.exxcellent.challenge;
 
+import de.exxcellent.challenge.constants.ChallengeType;
+
 import static de.exxcellent.challenge.constants.PathConstants.*;
 
 /**

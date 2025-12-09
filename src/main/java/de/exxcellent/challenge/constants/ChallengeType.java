@@ -1,4 +1,4 @@
-package de.exxcellent.challenge;
+package de.exxcellent.challenge.constants;
 
 /**
  * Enum for both challengetypes. Also stores the columns needed for the aggregation stage encoded into the enum values

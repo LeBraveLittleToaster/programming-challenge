@@ -1,20 +1,15 @@
 package de.exxcellent.challenge.aggregations;
 
-import de.exxcellent.challenge.ChallengeType;
+import de.exxcellent.challenge.constants.ChallengeType;
 import de.exxcellent.challenge.FileAnalyzer;
 import de.exxcellent.challenge.constants.PathConstants;
-import de.exxcellent.challenge.data.Row;
 import de.exxcellent.challenge.data.Table;
-import de.exxcellent.challenge.processing.MinGoalSpreadAggregation;
-import de.exxcellent.challenge.processing.MinWeatherDiffAggregation;
+import de.exxcellent.challenge.processing.aggregations.MinGoalSpreadAggregation;
+import de.exxcellent.challenge.processing.aggregations.MinWeatherDiffAggregation;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.RepeatedTest;
-import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 
 import static de.exxcellent.challenge.aggregations.Generators.*;

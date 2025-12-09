@@ -1,5 +1,6 @@
 package de.exxcellent.challenge;
 
+import de.exxcellent.challenge.constants.ChallengeType;
 import de.exxcellent.challenge.constants.PathConstants;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

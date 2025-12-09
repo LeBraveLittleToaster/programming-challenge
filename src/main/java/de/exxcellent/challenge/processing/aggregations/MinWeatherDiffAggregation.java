@@ -1,7 +1,10 @@
-package de.exxcellent.challenge.processing;
+package de.exxcellent.challenge.processing.aggregations;
 
-import de.exxcellent.challenge.ChallengeType;
+import de.exxcellent.challenge.constants.ChallengeType;
 import de.exxcellent.challenge.data.Table;
+import de.exxcellent.challenge.processing.AggregationFunction;
+import de.exxcellent.challenge.processing.ITypeParser;
+import de.exxcellent.challenge.processing.parser.TypeParserDoubleTable;
 
 import java.util.HashMap;
 import java.util.Map;

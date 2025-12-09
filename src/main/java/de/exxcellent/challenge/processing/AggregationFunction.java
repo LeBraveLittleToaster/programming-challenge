@@ -1,6 +1,6 @@
 package de.exxcellent.challenge.processing;
 
-import de.exxcellent.challenge.ChallengeType;
+import de.exxcellent.challenge.constants.ChallengeType;
 import de.exxcellent.challenge.data.Table;
 
 import java.util.Optional;

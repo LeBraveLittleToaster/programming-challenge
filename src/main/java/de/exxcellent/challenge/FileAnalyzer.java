@@ -1,9 +1,10 @@
 package de.exxcellent.challenge;
 
+import de.exxcellent.challenge.constants.ChallengeType;
 import de.exxcellent.challenge.data.Table;
 import de.exxcellent.challenge.processing.AggregationFunction;
-import de.exxcellent.challenge.processing.MinGoalSpreadAggregation;
-import de.exxcellent.challenge.processing.MinWeatherDiffAggregation;
+import de.exxcellent.challenge.processing.aggregations.MinGoalSpreadAggregation;
+import de.exxcellent.challenge.processing.aggregations.MinWeatherDiffAggregation;
 import de.exxcellent.challenge.reader.IFileReader;
 import de.exxcellent.challenge.reader.csv.CsvFileReader;
 
