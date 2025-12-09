@@ -1,14 +1,13 @@
 package de.exxcellent.challenge;
 
 import de.exxcellent.challenge.data.Table;
+import de.exxcellent.challenge.processing.AggregationFunction;
+import de.exxcellent.challenge.processing.MinWeatherDiffAggregation;
 import de.exxcellent.challenge.reader.IFileReader;
 import de.exxcellent.challenge.reader.csv.CsvFileReader;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URISyntaxException;
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -27,14 +26,17 @@ public class FileAnalyzer {
      */
     private final IFileReader fileReader;
 
+    private final AggregationFunction aggregationFunction;
+
     /**
      *
      * @param filePath Filepath to the source dataset
      * @param fileReader FileReader depending on the file ending of filePath parameter
      */
-    private FileAnalyzer(String filePath, IFileReader fileReader) {
+    private FileAnalyzer(String filePath, IFileReader fileReader, AggregationFunction aggregationFunction) {
         this.filePath = filePath;
         this.fileReader = fileReader;
+        this.aggregationFunction = aggregationFunction;
     }
 
     /**
@@ -46,12 +48,20 @@ public class FileAnalyzer {
     public static Optional<FileAnalyzer> create(String absolutFilePath, ChallengeType challengeType) {
         try {
             var fileReader = getFileReaderFromFileEnding(absolutFilePath);
-            return Optional.of(new FileAnalyzer(absolutFilePath, fileReader));
+            var aggregationFunction = getAggregationFunctionFromChallengeType(challengeType);
+            return Optional.of(new FileAnalyzer(absolutFilePath, fileReader, aggregationFunction));
         } catch (IllegalArgumentException e) {
             System.err.println(e.getMessage());
             return Optional.empty();
         }
 
+    }
+
+    private static AggregationFunction getAggregationFunctionFromChallengeType(ChallengeType challengeType) throws IllegalArgumentException {
+        return switch (challengeType) {
+            case WEATHER -> new MinWeatherDiffAggregation();
+            default -> throw new IllegalArgumentException("No AggregationFunction found for " + challengeType);
+        };
     }
 
     /**
@@ -73,7 +83,7 @@ public class FileAnalyzer {
     public String analyze() throws RuntimeException, IOException {
         InputStream fileAsInStream = this.getClass().getResourceAsStream(this.filePath);
         Table<String> table = fileReader.readFileToTable(fileAsInStream).orElseThrow(() -> new RuntimeException("Failed to read file!"));
-        return "ERROR";
+        return aggregationFunction.aggregate(table).orElse("ERROR in aggregation function");
     }
 
 }
