@@ -13,15 +13,16 @@ public final class App {
 
     /**
      * This is the main entry method of your program.
+     *
      * @param args The CLI arguments passed
      */
     public static void main(String... args) {
 
-        if(args.length != 2 || !args[0].equals(FOOTBALL_ARGUMENT) && !args[0].equals(WEATHER_ARGUMENT)) {
+        if (args.length != 2 || !args[0].equals(FOOTBALL_ARGUMENT) && !args[0].equals(WEATHER_ARGUMENT)) {
             System.err.println("Arguments not as intended.\nArguments: (--football or --weather) <filename.csv>");
         }
         FileAnalyzer analyzer = null;
-        if(args[0].equals(FOOTBALL_ARGUMENT)) {
+        if (args[0].equals(FOOTBALL_ARGUMENT)) {
             analyzer = FileAnalyzer
                     .create(FILE_BASE_PATH + args[1], ChallengeType.FOOTBALL)
                     .orElseThrow(() -> new RuntimeException("Not FileReader possible"));
@@ -29,22 +30,21 @@ public final class App {
             try {
                 String teamWithSmallestGoalSpread = analyzer.analyze();
                 System.out.printf("Team with smallest goal spread       : %s%n", teamWithSmallestGoalSpread);
-            }catch (Exception e) {
+            } catch (Exception e) {
                 System.err.println(e.getMessage());
             }
-        }else{
+        } else {
             analyzer = FileAnalyzer
                     .create(FILE_BASE_PATH + args[1], ChallengeType.WEATHER)
-                    .orElseThrow(() -> new RuntimeException("Not FileReader possible"));;
+                    .orElseThrow(() -> new RuntimeException("Not FileReader possible"));
+            ;
             try {
                 String dayWithSmallestTempSpread = analyzer.analyze();
                 System.out.printf("Day with smallest temperature spread : %s%n", dayWithSmallestTempSpread);
-            }catch (Exception e) {
+            } catch (Exception e) {
                 System.err.println(e.getMessage());
             }
         }
-
-
 
 
     }

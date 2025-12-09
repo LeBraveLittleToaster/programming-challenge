@@ -1,7 +1,10 @@
 package de.exxcellent.challenge;
 
+import de.exxcellent.challenge.constants.PathConstants;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -12,10 +15,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class AppTest {
 
     private String successLabel = "not successful";
+    private FileAnalyzer fileAnalyzerWeather;
+    private FileAnalyzer fileAnalyzerFootball;
+
 
     @BeforeEach
-    void setUp() {
+    public void setup() {
         successLabel = "successful";
+        fileAnalyzerWeather = FileAnalyzer.create(PathConstants.FILE_BASE_PATH + PathConstants.WEATHER_FILENAME, ChallengeType.WEATHER).get();
+        fileAnalyzerFootball = FileAnalyzer.create(PathConstants.FILE_BASE_PATH + PathConstants.FOOTBALL_FILENAME, ChallengeType.FOOTBALL).get();
     }
 
     @Test
@@ -31,6 +39,18 @@ class AppTest {
     @Test
     void runWeather() {
         App.main("--weather", "weather.csv");
+    }
+
+    @Test
+    public void testWeatherAnswerIsCorrect() throws IOException {
+        var result = fileAnalyzerWeather.analyze();
+        assertEquals("14", result);
+    }
+
+    @Test
+    public void testFootballAnswerIsCorrect() throws IOException {
+        var result = fileAnalyzerFootball.analyze();
+        assertEquals("Aston_Villa", result);
     }
 
 }

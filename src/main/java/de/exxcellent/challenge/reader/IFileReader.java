@@ -13,10 +13,11 @@ import java.util.Optional;
 public interface IFileReader {
     /**
      * Take file as inputstream and transforms it to a {@link de.exxcellent.challenge.data.Table<String>}.
-     *
+     * <p>
      * Optional and Throws definition depend on the implementation, but should be used as follows:
      * - IOExceptions for disk access problems
      * - Optional.empty() for parsing problems
+     *
      * @param file File as inputstream (e.g. resource stream)
      * @return If exist, {@link de.exxcellent.challenge.data.Table<String>} containing the source data in 2D space
      * @throws IOException Should be used for IO related errors (e.g. File not Found, File not accessible)
