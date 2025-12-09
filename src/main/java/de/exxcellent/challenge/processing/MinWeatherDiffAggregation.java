@@ -22,9 +22,9 @@ public class MinWeatherDiffAggregation extends AggregationFunction {
         if (dataDoubleTable.isEmpty()) {return Optional.empty();}
 
         var tempsPerDay = getTemperatureDistancesPerDay(dataDoubleTable.get(),
-                this.challengeType.aggregationColums[2],
+                this.challengeType.aggregationColums[0],
                 this.challengeType.aggregationColums[1],
-                this.challengeType.aggregationColums[0]);
+                this.challengeType.aggregationColums[2]);
 
         Integer dayNumber = getLowestDifferenceDayNumber(tempsPerDay);
         return dayNumber == -1 ? Optional.empty() : Optional.of(dayNumber + "");
