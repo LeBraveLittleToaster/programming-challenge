@@ -28,6 +28,9 @@ public class FileAnalyzer {
      */
     private final IFileReader fileReader;
 
+    /**
+     * Aggregation function which should be run on the read data
+     */
     private final AggregationFunction aggregationFunction;
 
     /**
@@ -60,6 +63,11 @@ public class FileAnalyzer {
 
     }
 
+    /**
+     * Chooses the aggreation function based on the {@link de.exxcellent.challenge.constants.ChallengeType}
+     * @param challengeType Challenge which should be computed
+     * @return Subclass of {@link de.exxcellent.challenge.processing.AggregationFunction}
+     */
     private static AggregationFunction getAggregationFunctionFromChallengeType(ChallengeType challengeType) {
         return switch (challengeType) {
             case WEATHER -> new MinWeatherDiffAggregation();
@@ -77,7 +85,6 @@ public class FileAnalyzer {
     private static IFileReader getFileReaderFromFileEnding(String filePath) throws IllegalArgumentException {
         var fileEnding = filePath.substring(filePath.lastIndexOf('.'));
 
-        System.out.println("File ending is: " + fileEnding);
         return switch (fileEnding) {
             case ".csv" -> new CsvFileReader();
             // Here could be JSON etc.

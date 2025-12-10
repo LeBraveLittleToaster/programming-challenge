@@ -1,7 +1,7 @@
 package de.exxcellent.challenge.constants;
 
 /**
- * Enum for both challengetypes. Also stores the columns needed for the aggregation stage encoded into the enum values
+ * Enum for both challenge types. Also stores the columns needed for the aggregation stage encoded into the enum values
  */
 public enum ChallengeType {
 

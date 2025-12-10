@@ -6,7 +6,7 @@ import de.exxcellent.challenge.data.Table;
 import java.util.Optional;
 
 /**
- * Generic class for storing and running Aggregationfunctions in the {@link de.exxcellent.challenge.FileAnalyzer} object
+ * Generic class for storing and running Aggregation functions in the {@link de.exxcellent.challenge.FileAnalyzer} object
  */
 public abstract class AggregationFunction {
 

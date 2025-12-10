@@ -7,7 +7,7 @@ import de.exxcellent.challenge.processing.AggregationFunction;
 import java.util.Optional;
 
 /**
- * Aggregation Function for calculating the Minimum weather temperature Difference per day
+ * Aggregation Function for calculating the minimum weather temperature difference per day
  */
 public class MinWeatherDiffAggregation extends AggregationFunction {
 

@@ -47,9 +47,8 @@ public class MinGoalSpreadAggregation extends AggregationFunction {
 
         int goalsColumnIndex = dataTable.getHeaderIndexForName(goalsColumnName).orElseThrow(() -> new RuntimeException("GoalsColumnName not found"));
         int goalsAllowedColumnIndex = dataTable.getHeaderIndexForName(goalsAllowedColumnName).orElseThrow(() -> new RuntimeException("goalsAllowedColumnName not found"));
-        ;
+
         int teamColumnIndex = dataTable.getHeaderIndexForName(teamColumnName).orElseThrow(() -> new RuntimeException("teamColumnName not found"));
-        ;
 
         dataTable.rows().values().forEach(row -> {
             String teamName = row.getValueAt(teamColumnIndex)
