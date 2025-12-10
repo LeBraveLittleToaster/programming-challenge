@@ -17,6 +17,10 @@ public class CsvFileReaderTest {
         csvFileReader = new CsvFileReader();
     }
 
+    /**
+     * Intentionally trying to load wrong or non existing files
+     * @throws IOException Files do not exist
+     */
     @Test
     public void loadingWrongFile() throws IOException {
         assertTrue(csvFileReader.readFileToTable(null).isEmpty());
@@ -25,6 +29,10 @@ public class CsvFileReaderTest {
         assertTrue(csvFileReader.readFileToTable(this.getClass().getResourceAsStream(PathConstants.FILE_BASE_PATH + "WRONG_FILE_NAME.csv")).isEmpty());
     }
 
+    /**
+     * Try to load correct files and file paths with multiple slashes
+     * @throws IOException Files do not exist
+     */
     @Test
     public void loadingCorrectFile() throws IOException {
         assertTrue(csvFileReader.readFileToTable(this.getClass().getResourceAsStream(PathConstants.FILE_BASE_PATH+ PathConstants.FOOTBALL_FILENAME)).isPresent());
@@ -32,6 +40,10 @@ public class CsvFileReaderTest {
         assertTrue(csvFileReader.readFileToTable(this.getClass().getResourceAsStream(PathConstants.FILE_BASE_PATH + "/////" + PathConstants.FOOTBALL_FILENAME)).isPresent());
     }
 
+    /**
+     * Test that all lines are parsed when loading files
+     * @throws IOException Files do not exist
+     */
     @Test
     public void testAmountOfLoadedLinesAndHeader() throws IOException {
         var tableOpt = csvFileReader.readFileToTable(this.getClass().getResourceAsStream(PathConstants.FILE_BASE_PATH + PathConstants.FOOTBALL_FILENAME));

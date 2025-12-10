@@ -2,12 +2,14 @@ package de.exxcellent.challenge;
 
 import de.exxcellent.challenge.constants.ChallengeType;
 import de.exxcellent.challenge.constants.PathConstants;
+import de.exxcellent.challenge.data.Row;
+import de.exxcellent.challenge.data.Table;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FileAnalyzerTests {
@@ -20,7 +22,7 @@ public class FileAnalyzerTests {
     }
 
     @Test
-    public void factoryTest(){
+    public void factoryTest() {
         assertTrue(FileAnalyzer.create("file-with-non-sense-ending.cool", ChallengeType.FOOTBALL).isEmpty());
         assertTrue(FileAnalyzer.create(PathConstants.FILE_BASE_PATH + PathConstants.FOOTBALL_FILENAME + "v", ChallengeType.FOOTBALL).isEmpty());
 
@@ -34,4 +36,5 @@ public class FileAnalyzerTests {
     public void tryRunTest() throws IOException {
         fileAnalyzer.analyze();
     }
+
 }

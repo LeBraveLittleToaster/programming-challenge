@@ -42,12 +42,20 @@ class AppTest {
         App.main("--weather", "weather.csv");
     }
 
+    /**
+     * Test weather answer
+     * @throws IOException File not exist
+     */
     @Test
     public void testWeatherAnswerIsCorrect() throws IOException {
         var result = fileAnalyzerWeather.analyze();
         assertEquals("14", result);
     }
 
+    /**
+     * Test football answer
+     * @throws IOException File not exist
+     */
     @Test
     public void testFootballAnswerIsCorrect() throws IOException {
         var result = fileAnalyzerFootball.analyze();

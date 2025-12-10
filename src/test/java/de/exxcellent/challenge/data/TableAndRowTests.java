@@ -16,6 +16,9 @@ public class TableAndRowTests {
         weatherTestTable2Correct = generateWeatherTable("MxT", "MnT", "Day", 1);
     }
 
+    /**
+     * Index bounds checks for creating and accessing Rows
+     */
     @Test
     public void tableRowsValidityCheck(){
         assertEquals(150, weatherTestTable1Correct.rows().size());
@@ -33,6 +36,9 @@ public class TableAndRowTests {
 
     }
 
+    /**
+     * Index bounds checks for creating and accessing Headers
+     */
     @Test
     public void tableHeaderValidityCheck(){
         assertEquals(3, weatherTestTable1Correct.header().size());
