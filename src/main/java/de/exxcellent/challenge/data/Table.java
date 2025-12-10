@@ -15,6 +15,11 @@ import java.util.Optional;
  * @param <T>    Rows are considered of the same type in the current implementation
  */
 public record Table<T>(Map<String, Integer> header, Map<Integer, Row<T>> rows) {
+    /**
+     * Returns index of the String header, stored in the header Map
+     * @param headerName String name of header
+     * @return Optional.empty if input is null or headerName not present in the map. Otherwise, returns index mapping stored in the header map as Optional
+     */
     public Optional<Integer> getHeaderIndexForName(String headerName) {
         if(headerName == null) return Optional.empty();
         return Optional.ofNullable(header.get(headerName));

@@ -13,6 +13,9 @@ import java.util.HashMap;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * Reads Csv File and provides the content as {@link de.exxcellent.challenge.data.Table<String>} data structure
+ */
 public class CsvFileReader implements IFileReader {
 
     /**
@@ -45,6 +48,13 @@ public class CsvFileReader implements IFileReader {
         return Optional.of(new Table<>(header, rows));
     }
 
+    /**
+     * Parses lines which concrete values into {@link de.exxcellent.challenge.data.Row<String>} objects. Each column is converted to an entry in the row values array
+     * @param reader Reader wrapping the inputstream of the file
+     * @param header Contains header definitions of the read CSV
+     * @return Map with the Row index and the concrete values as {@link de.exxcellent.challenge.data.Row<String>}
+     * @throws IOException If the file is not present or accessible
+     */
     private HashMap<Integer, Row<String>> getValueLines(BufferedReader reader, HashMap<String, Integer> header) throws IOException {
         var rows = new HashMap<Integer, Row<String>>();
         String line;
@@ -56,6 +66,11 @@ public class CsvFileReader implements IFileReader {
         return rows;
     }
 
+    /**
+     * Parses only the first headerline of the csv into a Map object.
+     * @param headerLine whole headerline as String already read from file
+     * @return Map with the header name, mapped on the column index of the header
+     */
     private HashMap<String, Integer> parseHeaderLine(String headerLine) {
         var headerValues = headerLine.split(",");
         var headerMap = new HashMap<String, Integer>();
@@ -65,6 +80,12 @@ public class CsvFileReader implements IFileReader {
         return headerMap;
     }
 
+    /**
+     * Parses one value line with concrete column values into a {@link de.exxcellent.challenge.data.Row<String>} object.
+     * @param line whole line of file already read from file
+     * @param expectedLineWidth expected length of line, based on amount of header columns for integrity check
+     * @return Row with the concrete column values as {@link de.exxcellent.challenge.data.Row<String>}
+     */
     private Optional<Row<String>> parseValueLine(String line, int expectedLineWidth) {
         var values = line.split(",");
         if (values.length != expectedLineWidth) {

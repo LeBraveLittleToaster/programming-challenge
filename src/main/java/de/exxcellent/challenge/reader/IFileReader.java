@@ -19,7 +19,7 @@ public interface IFileReader {
      * - Optional.empty() for parsing problems
      *
      * @param file File as inputstream (e.g. resource stream)
-     * @return If exist, {@link de.exxcellent.challenge.data.Table<String>} containing the source data in 2D space
+     * @return If exists, {@link de.exxcellent.challenge.data.Table<String>} containing the source data in 2D space
      * @throws IOException Should be used for IO related errors (e.g. File not Found, File not accessible)
      */
     Optional<Table<String>> readFileToTable(InputStream file) throws IOException;

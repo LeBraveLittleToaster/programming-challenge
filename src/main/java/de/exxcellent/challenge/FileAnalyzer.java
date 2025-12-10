@@ -85,6 +85,12 @@ public class FileAnalyzer {
         };
     }
 
+    /**
+     * Runs the analysis by loading the file, converting the content to the Table, using the fileReader and transforming the data using the aggregationFunction assigned by the factory.
+     * @return String for display to the user, containing the result or an error message
+     * @throws RuntimeException If the file cannot be converted to a Table or aggregationfunction produces an error
+     * @throws IOException If the file is not accessible
+     */
     public String analyze() throws RuntimeException, IOException {
         InputStream fileAsInStream = this.getClass().getResourceAsStream(this.filePath);
         Table<String> table = fileReader.readFileToTable(fileAsInStream).orElseThrow(() -> new RuntimeException("Failed to read file!"));

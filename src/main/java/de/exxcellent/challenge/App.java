@@ -9,6 +9,9 @@ import static de.exxcellent.challenge.constants.PathConstants.*;
  * design. Read: create your own classes and packages as appropriate.
  *
  * @author Benjamin Schmid <benjamin.schmid@exxcellent.de>
+ *
+ * Modified by
+ * @author Pascal Schiessle <pascal.schiessle@web.de>
  */
 public final class App {
 
@@ -23,12 +26,13 @@ public final class App {
         if (args.length != 2 || !args[0].equals(FOOTBALL_ARGUMENT) && !args[0].equals(WEATHER_ARGUMENT)) {
             System.err.println("Arguments not as intended.\nArguments: (--football or --weather) <filename.csv>");
         }
+
         FileAnalyzer analyzer = null;
+
         if (args[0].equals(FOOTBALL_ARGUMENT)) {
             analyzer = FileAnalyzer
                     .create(FILE_BASE_PATH + args[1], ChallengeType.FOOTBALL)
-                    .orElseThrow(() -> new RuntimeException("Not FileReader possible"));
-
+                    .orElseThrow(() -> new RuntimeException("FileReader error occured"));
             try {
                 String teamWithSmallestGoalSpread = analyzer.analyze();
                 System.out.printf("Team with smallest goal spread       : %s%n", teamWithSmallestGoalSpread);
@@ -39,7 +43,6 @@ public final class App {
             analyzer = FileAnalyzer
                     .create(FILE_BASE_PATH + args[1], ChallengeType.WEATHER)
                     .orElseThrow(() -> new RuntimeException("Not FileReader possible"));
-            ;
             try {
                 String dayWithSmallestTempSpread = analyzer.analyze();
                 System.out.printf("Day with smallest temperature spread : %s%n", dayWithSmallestTempSpread);

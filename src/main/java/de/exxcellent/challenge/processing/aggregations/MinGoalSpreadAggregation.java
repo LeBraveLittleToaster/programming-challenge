@@ -8,12 +8,21 @@ import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
+/**
+ * Aggregation Function for calculating the Minimum Goal Difference between shot and received goals
+ */
 public class MinGoalSpreadAggregation extends AggregationFunction {
 
     public MinGoalSpreadAggregation() {
         super(ChallengeType.FOOTBALL);
     }
 
+    /**
+     * Aggregates the minimum goal difference and return the Teamname of the team with the least difference
+     * @param dataTable Read input file as {@link de.exxcellent.challenge.data.Table<String>}
+     * @return Optional.empty if no team could be specified or columns missing, or Optional with teamname as String content
+     * @throws RuntimeException If the table does not contain the needed columns for aggregation
+     */
     @Override
     public Optional<String> aggregate(Table<String> dataTable) throws RuntimeException {
         return getSmallestGoalSpreadTeam(dataTable,
@@ -23,6 +32,15 @@ public class MinGoalSpreadAggregation extends AggregationFunction {
 
     }
 
+    /**
+     * Computes the minimum goal spread by converting the data table entries to the correct format and tracking the lowest spread
+     * @param dataTable Read input file as {@link de.exxcellent.challenge.data.Table<String>}
+     * @param goalsColumnName Column name in the header of the dataset for Goals
+     * @param goalsAllowedColumnName Column name in the header of the dataset for Goals Allowed
+     * @param teamColumnName Column name in the header of the dataset for Teamname
+     * @return Optional.empty if no team could be specified or columns missing, or Optional with teamname as String content
+     * @throws RuntimeException If the table does not contain the needed columns for aggregation
+     */
     private Optional<String> getSmallestGoalSpreadTeam(Table<String> dataTable, String goalsColumnName, String goalsAllowedColumnName, String teamColumnName) throws RuntimeException {
         var rsltTeamName = new AtomicReference<String>(null);
         var minGoalSpread = new AtomicInteger(Integer.MAX_VALUE);
